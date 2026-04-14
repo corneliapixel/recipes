@@ -1,4 +1,6 @@
 import random
 
 recipes = ["Tacos", "Chili sin carne", "Bolognese", "Korvstroganoff"]
-print(random.choice(recipes))
+recipe = (random.choice(recipes))
+
+print(f"Idag blir det {recipe} till middag!")
