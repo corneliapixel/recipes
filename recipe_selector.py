@@ -33,22 +33,31 @@ def main ():
         preference = input("Pick your potion: (1-5)").strip()
 
         if preference == '1':
-            break
+            preference = random.choice(vegetarian_recipes) 
 
         elif preference == '2':
-            break
+            preference = random.choice(healthy_recipes)
 
         elif preference == '3':
-            break
+            preference = random.choice(fastfood_recipes)
 
         elif preference == '4':
-            break 
+            preference = random.choice(cheap_recipes) 
 
         elif preference == '5':
-            break
+            all_recipes = (vegetarian_recipes + 
+                               healthy_recipes + 
+                               fastfood_recipes + 
+                               cheap_recipes)
+            preference = random.choice(all_recipes)
 
         else: 
             print("Sorry, I can't help you...\n")
+            continue
+
+        print("Analyzing cravings...")
+        print("Almost there...")
+        print(f"Tonight's dinner: {preference}")
 
 main() 
 
