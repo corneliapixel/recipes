@@ -10,6 +10,7 @@ def show_menu():    # show menu for user
     print("  3. Fast food")
     print("  4. Cheap food")
     print("  5. Random, please!")
+    print("  6. Exit")
     print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰")
 
 vegetarian_recipes = ["Vegetarian Curry with Cauliflower and Chickpeas", "Vegetable Stir-Fry", "Halloumi and Carrot Steaks", "Sweetpotato Soup with Chevre", "Enchiladas"]
@@ -25,7 +26,7 @@ def main ():
 
     while True:
         show_menu()
-        preference = input("Pick your potion: (1-5)\t").strip()
+        preference = input("Pick your potion: (1-6)\t").strip()
         print("")
 
         if preference == '1':
@@ -46,6 +47,11 @@ def main ():
                                fastfood_recipes + 
                                cheap_recipes)
             recipe = random.choice(all_recipes)
+
+        elif preference == '6':
+            print("I guess there is always Foodora...\n")
+            print("Take care. BYE!\n")
+            break
 
         else: 
             print("Sorry, I can't help you...\n")
