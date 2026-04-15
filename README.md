@@ -1,4 +1,4 @@
-# Randomized recipe selector 
+# Randomized Recipe Generator 
 
 
 ## Description
@@ -14,7 +14,7 @@
 
 ## Project structure
 recipes/  
-├── recipe_selector.py 
+├── recipe_generator.py 
 └── README.md 
 
 
