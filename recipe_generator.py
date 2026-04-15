@@ -11,7 +11,13 @@ def show_menu():    # show menu for user
     print("  4. Cheap food")
     print("  5. Random, please!")
     print("  6. Exit")
-    print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰")
+    print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰\n")
+
+
+def show_recipe(recipe):
+    print("Analyzing cravings...")
+    print("Almost there...")
+    print(f"Tonight's dinner: {recipe}\n")
 
 vegetarian_recipes = ["Vegetarian Curry with Cauliflower and Chickpeas", "Vegetable Stir-Fry", "Halloumi and Carrot Steaks", "Sweetpotato Soup with Chevre", "Enchiladas"]
 
@@ -57,9 +63,7 @@ def main ():
             print("Sorry, I can't help you...\n")
             continue
 
-        print("Analyzing cravings...")
-        print("Almost there...")
-        print(f"Tonight's dinner: {recipe}\n")
+        show_recipe(recipe)
 
 main() 
 
