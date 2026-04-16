@@ -1,6 +1,14 @@
 import random
 import time
 
+# DATA
+recipes = {
+    "vegetarian": ["Vegetarian Curry with Cauliflower and Chickpeas", "Vegetable Stir-Fry", "Halloumi and Carrot Steaks", "Sweetpotato Soup with Chevre", "Enchiladas"],
+    "healthy": ["Salmon with Quinoa", "Grilled Chicken Salad", "Tuna Salad Asian Style", "Avocado Shrimp Salad", "Pumpkin Soup"], 
+    "fastfood": ["Burgers and Fries", "Homemade Pizza", "Hot Dogs", "Mac 'n' Cheese", "Spaghetti and Meatballs"],
+    "cheap": ["Carrot Biryani", "Nasi Goreng", "Spaghetti Carbonara", "Lentil Soup", "What's in the Fridge?"]
+}
+
 def show_menu():    # show menu for user 
     print("Welcome to the Randomized Recipe Generator!")
     print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰")
@@ -27,14 +35,6 @@ def show_recipe(recipe):
 def ask_to_continue():
     return input("Want another round? (y/n): ").strip().lower() in ("yes", "y", "ja", "yas")
 
-vegetarian_recipes = ["Vegetarian Curry with Cauliflower and Chickpeas", "Vegetable Stir-Fry", "Halloumi and Carrot Steaks", "Sweetpotato Soup with Chevre", "Enchiladas"]
-
-healthy_recipes = ["Salmon with Quinoa", "Grilled Chicken Salad", "Tuna Salad Asian Style", "Avocado Shrimp Salad", "Pumpkin Soup"]
-
-fastfood_recipes = ["Burgers and Fries", "Homemade Pizza", "Hot Dogs", "Mac 'n' Cheese", "Spaghetti and Meatballs"]
-
-cheap_recipes = ["Carrot Biryani", "Nasi Goreng", "Spaghetti Carbonara", "Lentil Soup", "What's in the Fridge?"]
-
 
 def main (): 
 
@@ -44,22 +44,24 @@ def main ():
         print("")
 
         if preference == '1':
-            recipe = random.choice(vegetarian_recipes) 
+            recipe = random.choice(recipes["vegetarian"]) 
 
         elif preference == '2':
-            recipe = random.choice(healthy_recipes)
+            recipe = random.choice(recipes["healthy"])
 
         elif preference == '3':
-            recipe = random.choice(fastfood_recipes)
+            recipe = random.choice(recipes["fastfood"])
 
         elif preference == '4':
-            recipe = random.choice(cheap_recipes) 
+            recipe = random.choice(recipes["cheap"])
 
         elif preference == '5':
-            all_recipes = (vegetarian_recipes + 
-                               healthy_recipes + 
-                               fastfood_recipes + 
-                               cheap_recipes)
+            all_recipes = (
+                recipes["vegetarian"] +
+                recipes["healthy"] +
+                recipes["fastfood"] +
+                recipes["cheap"]
+            )
             recipe = random.choice(all_recipes)
 
         elif preference == '6':
