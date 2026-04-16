@@ -1,12 +1,19 @@
 import random
 import time
 
-# DATA
+# Dictionaries
 recipes = {
     "vegetarian": ["Vegetarian Curry with Cauliflower and Chickpeas", "Vegetable Stir-Fry", "Halloumi and Carrot Steaks", "Sweetpotato Soup with Chevre", "Enchiladas"],
     "healthy": ["Salmon with Quinoa", "Grilled Chicken Salad", "Tuna Salad Asian Style", "Avocado Shrimp Salad", "Pumpkin Soup"], 
     "fastfood": ["Burgers and Fries", "Homemade Pizza", "Hot Dogs", "Mac 'n' Cheese", "Spaghetti and Meatballs"],
     "cheap": ["Carrot Biryani", "Nasi Goreng", "Spaghetti Carbonara", "Lentil Soup", "What's in the Fridge?"]
+}
+
+choice_mapping = {
+        "1": "vegetarian",
+        "2": "healthy",
+        "3": "fastfood",
+        "4": "cheap"
 }
 
 def show_menu():    # show menu for user 
@@ -43,25 +50,14 @@ def main ():
         preference = input("Pick your potion: (1-6)\t").strip()
         print("")
 
-        if preference == '1':
-            recipe = random.choice(recipes["vegetarian"]) 
+        if preference in choice_mapping:
+            category = choice_mapping[preference]
+            recipe = random.choice(recipes[category]) 
 
-        elif preference == '2':
-            recipe = random.choice(recipes["healthy"])
-
-        elif preference == '3':
-            recipe = random.choice(recipes["fastfood"])
-
-        elif preference == '4':
-            recipe = random.choice(recipes["cheap"])
-
-        elif preference == '5':
-            all_recipes = (
-                recipes["vegetarian"] +
-                recipes["healthy"] +
-                recipes["fastfood"] +
-                recipes["cheap"]
-            )
+        elif preference == "5":
+            all_recipes = []
+            for category in recipes.values():
+                all_recipes.extend(category)
             recipe = random.choice(all_recipes)
 
         elif preference == '6':
