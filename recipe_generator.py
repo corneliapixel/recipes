@@ -30,15 +30,16 @@ def show_menu():    # show menu for user
     print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰\n")
 
 
-def show_recipe(recipe):
+def show_recipe(category, recipe):
     print("Analyzing cravings...")
     time.sleep(2)
     print("Almost there...\n")
     time.sleep(1)
+    print(f"Category: {category.title()}") # Display category with capitalized first letter
     print(f"Tonight's dinner: {recipe}\n")
     time.sleep(1)
 
-# Returns a random recipe based on the user's input or None if the input is invalid.
+# Returns a category and a random recipe based on the user's input or None if the input is invalid.
 def fetch_recipe(preference):
     preference = preference.strip().lower() # tar bort mellanslag
 
@@ -46,24 +47,23 @@ def fetch_recipe(preference):
     if preference in choice_mapping:
         # Get category name from the mapping (under choice_mapping)
         category = choice_mapping[preference]
-
-        # Return a random recipe from selected category
-        return random.choice(recipes[category]) 
+        recipe = random.choice(recipes[category])
+        return category, recipe
 
     elif preference == "5":
         # Create an empty list to collect all recipes
         all_recipes = []
 
-        # Loop through each list of recipes (one list per category)
-        for recipe_list in recipes.values():
-            # Add all recipes from each category list to one combined list
-            all_recipes.extend(recipe_list)
+        # Loop through each list of recipes (one list per category) and save category + recipe to all_recipes list
+        for category, recipe_list in recipes.items():
+            for recipe in recipe_list:
+                all_recipes.append((category, recipe))
 
         # Return a random recipe from the full list 
         return random.choice(all_recipes)
 
-    
-    return None
+    # Return (None, None) when input is invalid so the function always return (category, recipe)
+    return None, None
 
 
 def ask_to_continue():
@@ -82,13 +82,13 @@ def main ():
             print("Take care. BYE!\n")
             break
 
-        recipe = fetch_recipe(preference)
+        category, recipe = fetch_recipe(preference)
 
         if recipe is None:
             print("Sorry, I can't help you...\n")
             continue
-             
-        show_recipe(recipe)
+
+        show_recipe(category, recipe)
 
         if not ask_to_continue():
             print("Take care. BYE!")
