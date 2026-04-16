@@ -23,6 +23,10 @@ def show_recipe(recipe):
     print(f"Tonight's dinner: {recipe}\n")
     time.sleep(1)
 
+
+def ask_to_continue():
+    return input("Want another round? (y/n): ").strip().lower() in ("yes", "y", "ja", "yas")
+
 vegetarian_recipes = ["Vegetarian Curry with Cauliflower and Chickpeas", "Vegetable Stir-Fry", "Halloumi and Carrot Steaks", "Sweetpotato Soup with Chevre", "Enchiladas"]
 
 healthy_recipes = ["Salmon with Quinoa", "Grilled Chicken Salad", "Tuna Salad Asian Style", "Avocado Shrimp Salad", "Pumpkin Soup"]
@@ -68,6 +72,10 @@ def main ():
             continue
 
         show_recipe(recipe)
+
+        if not ask_to_continue():
+            print("Take care. BYE!")
+            break
 
 main() 
 
