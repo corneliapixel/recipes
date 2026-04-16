@@ -38,37 +38,56 @@ def show_recipe(recipe):
     print(f"Tonight's dinner: {recipe}\n")
     time.sleep(1)
 
+# Returns a random recipe based on the user's input or None if the input is invalid.
+def fetch_recipe(preference):
+    preference = preference.strip().lower() # tar bort mellanslag
+
+    # Check if the user's choice matches a category
+    if preference in choice_mapping:
+        # Get category name from the mapping (under choice_mapping)
+        category = choice_mapping[preference]
+
+        # Return a random recipe from selected category
+        return random.choice(recipes[category]) 
+
+    elif preference == "5":
+        # Create an empty list to collect all recipes
+        all_recipes = []
+
+        # Loop through each list of recipes (one list per category)
+        for recipe_list in recipes.values():
+            # Add all recipes from each category list to one combined list
+            all_recipes.extend(recipe_list)
+
+        # Return a random recipe from the full list 
+        return random.choice(all_recipes)
+
+    
+    return None
+
 
 def ask_to_continue():
     return input("Want another round? (y/n): ").strip().lower() in ("yes", "y", "ja", "yas")
 
 
 def main (): 
-
     while True:
         show_menu()
         preference = input("Pick your potion: (1-6)\t").strip()
         print("")
 
-        if preference in choice_mapping:
-            category = choice_mapping[preference]
-            recipe = random.choice(recipes[category]) 
-
-        elif preference == "5":
-            all_recipes = []
-            for category in recipes.values():
-                all_recipes.extend(category)
-            recipe = random.choice(all_recipes)
-
-        elif preference == '6':
+        # Exit
+        if preference == '6':
             print("I guess there is always Foodora...\n")
             print("Take care. BYE!\n")
             break
 
-        else: 
+        recipe = fetch_recipe(preference)
+
+        if recipe is None:
             print("Sorry, I can't help you...\n")
             continue
-
+             
         show_recipe(recipe)
 
         if not ask_to_continue():
