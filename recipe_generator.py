@@ -1,4 +1,5 @@
 import random
+import time
 
 def show_menu():    # show menu for user 
     print("Welcome to the Randomized Recipe Generator!")
@@ -16,8 +17,11 @@ def show_menu():    # show menu for user
 
 def show_recipe(recipe):
     print("Analyzing cravings...")
-    print("Almost there...")
+    time.sleep(2)
+    print("Almost there...\n")
+    time.sleep(1)
     print(f"Tonight's dinner: {recipe}\n")
+    time.sleep(1)
 
 vegetarian_recipes = ["Vegetarian Curry with Cauliflower and Chickpeas", "Vegetable Stir-Fry", "Halloumi and Carrot Steaks", "Sweetpotato Soup with Chevre", "Enchiladas"]
 
