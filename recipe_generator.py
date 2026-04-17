@@ -1,6 +1,20 @@
 import random
 import time
 
+import logging
+
+# Configure logging ->
+logging.basicConfig(
+    filename='show_history.log',
+    encoding="utf-8",
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+
+logger = logging.getLogger(__name__)    # create logger for this file
+
+
 # Dictionaries
 recipes = {
     "vegetarian": ["Vegetarian Curry with Cauliflower and Chickpeas", "Vegetable Stir-Fry", "Halloumi and Carrot Steaks", "Sweetpotato Soup with Chevre", "Enchiladas"],
@@ -37,6 +51,7 @@ def show_recipe(category, recipe):
     time.sleep(1)
     print(f"Category: {category.title()}") # Display category with capitalized first letter
     print(f"Tonight's dinner: {recipe}\n")
+    logger.info("Category: %s - Tonight's dinner: %s", category.title(), recipe)
     time.sleep(1)
 
 # Returns a category and a random recipe based on the user's input or None if the input is invalid.
