@@ -114,21 +114,21 @@ def show_history():
 def main (): 
     while True:
         main_menu()
-        preference = input("Make a choice: (0-4)\t").strip()
+        menu_choice = input("Make a choice: (0-4)\t").strip()
         print("☰" * 25)
         print("")
 
         # Exit
-        if preference == '0':
+        if menu_choice == '0':
             print("I guess there is always Foodora...\n")
             print("Take care. BYE!\n")
             break
 
-        elif preference == '3':
+        elif menu_choice == '3':
             show_history()
             continue
 
-        elif preference == '1':
+        elif menu_choice == '1':
             show_categories()
             preference = input("\nPick a category: (1-4)\t")
             print("☰" * 25)
@@ -142,7 +142,7 @@ def main ():
 
             show_recipe(category, recipe)
 
-        elif preference == '2':
+        elif menu_choice == '2':
             category, recipe = fetch_random_recipe()
             show_recipe(category, recipe)
 
