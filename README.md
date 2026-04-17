@@ -4,11 +4,41 @@
 
 A Python program that helps you decide what to eat by generating a random recipe based on your preferences. You can also skip setting preferences and get a random recipe picked out for you from all existing categories.
 
-## Features 
-- Interactive menu in the terminal
-- Multiple recipe categories
-- Random recipe generator
-- Charming output messages
+The program also logs generated recipes to a file.
+
+## Features
+
+* Interactive menu in the terminal
+* Choose betweeen multiple recipe categories:
+    * Vegetarian
+    * Healthy
+    * Fast food
+    * Cheap food
+* Generate random recipes
+* Charming output messages
+* Log generated recipes to `show_history.log` 
+* All generated recipes are saved with date and time
+* View recipe history from previous sessions
+
+## How it works
+
+1. The user selects preference (category) or random
+2. A recipe is generated
+3. The result (category & recipe) is displayed in the terminal
+4. The recipe is saved to a log file with timestamp
+5. The user can choose to generate another recipe
+
+## Logging
+
+The program uses Python's built-in `logging` module.
+
+Each generated recipe is saved in: 
+` show_history.log`
+
+
+## Requirements
+
+* Python 3
 
 
 ## Installation
@@ -33,6 +63,7 @@ A Python program that helps you decide what to eat by generating a random recipe
 ## Project structure
 recipes/  
 ├── recipe_generator.py 
+├── show_history.log
 └── README.md 
 
 
