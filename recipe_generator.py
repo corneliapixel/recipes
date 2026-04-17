@@ -41,6 +41,7 @@ def show_menu():    # show menu for user
     print("  4. Cheap food")
     print("  5. Random, please!")
     print("  6. Exit")
+    print("  0. Show history")
     print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰\n")
 
 
@@ -84,11 +85,28 @@ def fetch_recipe(preference):
 def ask_to_continue():
     return input("Want another round? (y/n): ").strip().lower() in ("yes", "y", "ja", "yas")
 
+# Function that displays the saved recipe history from show_history.log
+def show_history():
+    try:
+        with open("show_history.log", "r", encoding="utf-8")  as file:
+            print("\n\t\t\t  🍽   Recipe History  🍽  ") # print heading
+            print("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯")
+            # Loop for each line in the file (each line = one logged recipe)
+            for i, line in enumerate(file, start=1):
+                print(f"{i}. {line}", end="") # Print each line together with its index number (starting from 1)
+            print("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯")
+
+        input("\n⏎ Press Enter for return ⏎")
+
+    # If the file doesn't exist (no logged recipes)
+    except FileNotFoundError:
+        print("\n Sorry, no history logged yet")
+
 
 def main (): 
     while True:
         show_menu()
-        preference = input("Pick your potion: (1-6)\t").strip()
+        preference = input("Pick your potion: (0-6)\t").strip()
         print("")
 
         # Exit
@@ -96,6 +114,9 @@ def main ():
             print("I guess there is always Foodora...\n")
             print("Take care. BYE!\n")
             break
+
+        elif preference == '0':
+            show_history()
 
         category, recipe = fetch_recipe(preference)
 
