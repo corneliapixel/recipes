@@ -28,21 +28,28 @@ choice_mapping = {
         "2": "healthy",
         "3": "fastfood",
         "4": "cheap"
+
 }
 
-def show_menu():    # show menu for user 
-    print("Welcome to the Randomized Recipe Generator!")
-    print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰")
-    print("  Any specific cravings?")
-    print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰")
+def main_menu():
+    print("\nWelcome to the Randomized Recipe Generator!")
+    print("☰" * 50)
+    print("Main Menu")
+    print("☰" * 50)
+    print("  1. Choose a category")
+    print("  2. Fetch a random recipe")
+    print("  3. Show recipe history")
+    print("  0. Exit program")
+    print("☰" * 50 + "\n")
+
+def show_categories():
+    print("All categories")
+    print("☰" * 25)
     print("  1. Vegetarian")
-    print("  2. Healthy food")
-    print("  3. Fast food")
-    print("  4. Cheap food")
-    print("  5. Random, please!")
-    print("  6. Exit")
-    print("  0. Show history")
-    print("☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰☰\n")
+    print("  2. Healthy Food")
+    print("  3. Fast Food")
+    print("  4. Cheap Food")
+    print("☰" * 25)
 
 
 def show_recipe(category, recipe):
@@ -65,8 +72,12 @@ def fetch_recipe(preference):
         category = choice_mapping[preference]
         recipe = random.choice(recipes[category])
         return category, recipe
+    
+    # Return (None, None) when input is invalid so the function always return (category, recipe)
+    return None, None
 
-    elif preference == "5":
+
+def fetch_random_recipe():
         # Create an empty list to collect all recipes
         all_recipes = []
 
@@ -77,9 +88,6 @@ def fetch_recipe(preference):
 
         # Return a random recipe from the full list 
         return random.choice(all_recipes)
-
-    # Return (None, None) when input is invalid so the function always return (category, recipe)
-    return None, None
 
 
 def ask_to_continue():
@@ -105,26 +113,42 @@ def show_history():
 
 def main (): 
     while True:
-        show_menu()
-        preference = input("Pick your potion: (0-6)\t").strip()
+        main_menu()
+        preference = input("Make a choice: (0-4)\t").strip()
+        print("☰" * 25)
         print("")
 
         # Exit
-        if preference == '6':
+        if preference == '0':
             print("I guess there is always Foodora...\n")
             print("Take care. BYE!\n")
             break
 
-        elif preference == '0':
+        elif preference == '3':
             show_history()
-
-        category, recipe = fetch_recipe(preference)
-
-        if recipe is None:
-            print("Sorry, I can't help you...\n")
             continue
 
-        show_recipe(category, recipe)
+        elif preference == '1':
+            show_categories()
+            preference = input("\nPick a category: (1-4)\t")
+            print("☰" * 25)
+            print("")
+
+            category, recipe = fetch_recipe(preference)
+
+            if recipe is None:
+                print("Sorry, I can't help you...\n")
+                continue
+
+            show_recipe(category, recipe)
+
+        elif preference == '2':
+            category, recipe = fetch_random_recipe()
+            show_recipe(category, recipe)
+
+        else:
+            print("Invalid menu choice. Please try again.\n")
+            continue
 
         if not ask_to_continue():
             print("Take care. BYE!")
