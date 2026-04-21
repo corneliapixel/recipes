@@ -114,7 +114,7 @@ def show_history():
 def main (): 
     while True:
         main_menu()
-        menu_choice = input("Make a choice: (0-4)\t").strip()
+        menu_choice = input("Make a choice: (0-3)\t").strip()
         print("☰" * 25)
         print("")
 
