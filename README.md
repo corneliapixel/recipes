@@ -62,8 +62,10 @@ Each generated recipe is saved in:
 
 ## Project structure
 recipes/  
-├── recipe_generator.py 
+├── recipe_generator.py
+
 ├── show_history.log
+
 └── README.md 
 
 
